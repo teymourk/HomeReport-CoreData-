@@ -8,22 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		0B583D081EEBBA4B0004EDFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B583D071EEBBA4B0004EDFE /* AppDelegate.swift */; };
-		0B583D0A1EEBBA4B0004EDFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B583D091EEBBA4B0004EDFE /* ViewController.swift */; };
-		0B583D0D1EEBBA4B0004EDFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B583D0B1EEBBA4B0004EDFE /* Main.storyboard */; };
+		0B583D0A1EEBBA4B0004EDFE /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B583D091EEBBA4B0004EDFE /* HomeListViewController.swift */; };
 		0B583D101EEBBA4B0004EDFE /* HomeReport__CoreData_.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B583D0E1EEBBA4B0004EDFE /* HomeReport__CoreData_.xcdatamodeld */; };
 		0B583D121EEBBA4B0004EDFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B583D111EEBBA4B0004EDFE /* Assets.xcassets */; };
 		0B583D151EEBBA4B0004EDFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B583D131EEBBA4B0004EDFE /* LaunchScreen.storyboard */; };
+		0B583D1D1EEBBB120004EDFE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B583D1C1EEBBB120004EDFE /* CoreDataStack.swift */; };
+		0B7621571EF49F3A004F94C8 /* CutomeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7621561EF49F3A004F94C8 /* CutomeTabBar.swift */; };
+		0B7621591EF49F8E004F94C8 /* SaleHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7621581EF49F8E004F94C8 /* SaleHistoryViewController.swift */; };
+		0BA679351EEBBCE800443910 /* homes.json in Resources */ = {isa = PBXBuildFile; fileRef = 0BA679341EEBBCE700443910 /* homes.json */; };
+		0BE72E481EF5AE7D00703755 /* Home+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE72E461EF5AE7D00703755 /* Home+CoreDataClass.swift */; };
+		0BE72E4B1EF5AFED00703755 /* HomeReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE72E4A1EF5AFED00703755 /* HomeReportCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0B583D041EEBBA4B0004EDFE /* HomeReport (CoreData).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HomeReport (CoreData).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B583D071EEBBA4B0004EDFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0B583D091EEBBA4B0004EDFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0B583D0C1EEBBA4B0004EDFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0B583D091EEBBA4B0004EDFE /* HomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
 		0B583D0F1EEBBA4B0004EDFE /* HomeReport__CoreData_.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HomeReport__CoreData_.xcdatamodel; sourceTree = "<group>"; };
 		0B583D111EEBBA4B0004EDFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B583D141EEBBA4B0004EDFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B583D161EEBBA4B0004EDFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B583D1C1EEBBB120004EDFE /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		0B7621561EF49F3A004F94C8 /* CutomeTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutomeTabBar.swift; sourceTree = "<group>"; };
+		0B7621581EF49F8E004F94C8 /* SaleHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleHistoryViewController.swift; sourceTree = "<group>"; };
+		0BA679341EEBBCE700443910 /* homes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = homes.json; sourceTree = "<group>"; };
+		0BE72E461EF5AE7D00703755 /* Home+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Home+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0BE72E4A1EF5AFED00703755 /* HomeReportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeReportCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +50,7 @@
 		0B583CFB1EEBBA4B0004EDFE = {
 			isa = PBXGroup;
 			children = (
+				0BE72E461EF5AE7D00703755 /* Home+CoreDataClass.swift */,
 				0B583D061EEBBA4B0004EDFE /* HomeReport (CoreData) */,
 				0B583D051EEBBA4B0004EDFE /* Products */,
 			);
@@ -57,8 +68,12 @@
 			isa = PBXGroup;
 			children = (
 				0B583D071EEBBA4B0004EDFE /* AppDelegate.swift */,
-				0B583D091EEBBA4B0004EDFE /* ViewController.swift */,
-				0B583D0B1EEBBA4B0004EDFE /* Main.storyboard */,
+				0B583D091EEBBA4B0004EDFE /* HomeListViewController.swift */,
+				0BE72E4A1EF5AFED00703755 /* HomeReportCell.swift */,
+				0B7621581EF49F8E004F94C8 /* SaleHistoryViewController.swift */,
+				0B583D1C1EEBBB120004EDFE /* CoreDataStack.swift */,
+				0B7621561EF49F3A004F94C8 /* CutomeTabBar.swift */,
+				0BA679341EEBBCE700443910 /* homes.json */,
 				0B583D111EEBBA4B0004EDFE /* Assets.xcassets */,
 				0B583D131EEBBA4B0004EDFE /* LaunchScreen.storyboard */,
 				0B583D161EEBBA4B0004EDFE /* Info.plist */,
@@ -128,8 +143,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B583D151EEBBA4B0004EDFE /* LaunchScreen.storyboard in Resources */,
+				0BA679351EEBBCE800443910 /* homes.json in Resources */,
 				0B583D121EEBBA4B0004EDFE /* Assets.xcassets in Resources */,
-				0B583D0D1EEBBA4B0004EDFE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,23 +155,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B583D0A1EEBBA4B0004EDFE /* ViewController.swift in Sources */,
+				0B583D0A1EEBBA4B0004EDFE /* HomeListViewController.swift in Sources */,
 				0B583D081EEBBA4B0004EDFE /* AppDelegate.swift in Sources */,
 				0B583D101EEBBA4B0004EDFE /* HomeReport__CoreData_.xcdatamodeld in Sources */,
+				0B7621591EF49F8E004F94C8 /* SaleHistoryViewController.swift in Sources */,
+				0BE72E4B1EF5AFED00703755 /* HomeReportCell.swift in Sources */,
+				0B7621571EF49F3A004F94C8 /* CutomeTabBar.swift in Sources */,
+				0B583D1D1EEBBB120004EDFE /* CoreDataStack.swift in Sources */,
+				0BE72E481EF5AE7D00703755 /* Home+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0B583D0B1EEBBA4B0004EDFE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0B583D0C1EEBBA4B0004EDFE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0B583D131EEBBA4B0004EDFE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -269,6 +281,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LC5873RCDE;
 				INFOPLIST_FILE = "HomeReport (CoreData)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kia.keyFail.HomeReport--CoreData-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -282,6 +295,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LC5873RCDE;
 				INFOPLIST_FILE = "HomeReport (CoreData)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kia.keyFail.HomeReport--CoreData-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -308,6 +322,7 @@
 				0B583D1B1EEBBA4B0004EDFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

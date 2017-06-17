@@ -13,10 +13,19 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        let tabBar = CustomeTabBar()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        window?.rootViewController = UINavigationController(rootViewController: tabBar)
+        
+        deleteRecord()
+        checkDataStore()
+        
         return true
     }
 
@@ -41,53 +50,136 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
+        CoreDataStack.coreData.saveContext()
     }
-
-    // MARK: - Core Data stack
-
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
-        let container = NSPersistentContainer(name: "HomeReport__CoreData_")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+    
+    private func checkDataStore() {
+        
+        let request: NSFetchRequest<Home> = Home.fetchRequest()
+        
+        do {
+            
+            let homeCount = try context.count(for: request)
+            
+            if homeCount == 0 {
+                uploadSampleData()
             }
-        })
-        return container
-    }()
-
-    // MARK: - Core Data Saving support
-
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
+            
+        } catch {
+            
+            fatalError("Error in Counting Home Record")
+        }
+    }
+    
+    private func uploadSampleData() {
+        
+        let context = CoreDataStack.coreData.persistentContainer.viewContext
+     
+        if let url = Bundle.main.url(forResource: "homes", withExtension: "json"), let data = try? Data(contentsOf: url) {
+            
             do {
-                try context.save()
+                
+                if let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary, let jsonArray = jsonResult.value(forKey: "home") as? NSArray {
+                   
+                    for json in jsonArray {
+                        
+                        if let homeData = json as? [String: AnyObject] {
+                            
+                            var image:UIImage?
+                            
+                            guard let city = homeData["city"] as? String else {return}
+                            guard let price = homeData["price"] as? Double else {return}
+                            guard let bed = homeData["bed"] else {return}
+                            guard let bath = homeData["bath"] else {return}
+                            guard let sqft = homeData["sqft"] else {return}
+                            guard let homeCategory = homeData["category"] as? NSDictionary, let homeType = homeCategory["homeType"] as? String else {return}
+                            guard let homeStatus = homeData["status"] as? NSDictionary, let isForSale = homeStatus["isForSale"] as? Bool else {return}
+                            
+                            if let currentImage = homeData["image"], let imageName = currentImage as? String {
+                                
+                                image = UIImage(named: imageName)
+                            }
+                            
+                            //HomeObject Initializing
+                            let home = homeType.caseInsensitiveCompare("condo") == .orderedSame ? Condo(context: context) : SingleFamily(context: context)
+                                home.price = price
+                                home.bed = bed.int16Value
+                                home.bath = bath.int16Value
+                                home.sqft = sqft.int16Value
+                                home.image = NSData(data: UIImageJPEGRepresentation(image!, 1.0)!)
+                                home.homeType = homeType
+                                home.city = city
+                                home.isForSale = isForSale
+                            
+                            if let unitsPerBuilding = homeData["unitsPerBuilding"] {
+                                
+                                (home as! Condo).unitsPerBuilding = unitsPerBuilding.int16Value
+                            }
+                            
+                            if let lotSize = homeData["lotSize"] {
+                                (home as! SingleFamily).lotSize = lotSize.int16Value
+                            }
+                            
+                            if let saleHistory = homeData["saleHistory"] as? NSArray, let saleHistoryData = home.saleHistory?.mutableCopy() as? NSMutableSet {
+                                
+                                for saleDetail in saleHistory {
+                                    
+                                    if let saleData = saleDetail as? [String: AnyObject] {
+                                        
+                                        guard let soldPrice = saleData["soldPrice"] as? Double else {return}
+                                        guard let soldDateStr = saleData["soldDate"] as? String else {return}
+                                        
+                                        let dateFormatter = DateFormatter()
+                                            dateFormatter.dateFormat = "yyyy-MM-dd"
+                                        
+                                        let soldDate = dateFormatter.date(from: soldDateStr)! as NSDate
+                                        
+                                        let saleHistory = SaleHistory(context: context)
+                                            saleHistory.soldPrice = soldPrice
+                                            saleHistory.soldDate = soldDate
+                                        
+                                        saleHistoryData.add(saleHistory)
+                                
+                                        home.addToSaleHistory(saleHistory)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                CoreDataStack.coreData.saveContext()
+                
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                fatalError("Cannot Upload Sample Data")
             }
         }
     }
-
+    
+    func deleteRecord() {
+        
+        let context = CoreDataStack.coreData.persistentContainer.viewContext
+        
+        let homeRequest:NSFetchRequest<Home> = Home.fetchRequest()
+        let saleHistoryRequest:NSFetchRequest<SaleHistory> = SaleHistory.fetchRequest()
+        
+        var deleteRequest:NSBatchDeleteRequest
+        var deleteResults:NSPersistentStoreResult
+        
+        do {
+            
+            deleteRequest = NSBatchDeleteRequest(fetchRequest: homeRequest as! NSFetchRequest<NSFetchRequestResult>)
+            deleteResults = try context.execute(deleteRequest)
+            
+            deleteRequest = NSBatchDeleteRequest(fetchRequest: saleHistoryRequest as! NSFetchRequest<NSFetchRequestResult>)
+            deleteResults = try context.execute(deleteRequest)
+            
+            
+        } catch {
+            
+            fatalError("Failed To Remove Exisitng Record")
+        }
+    }
 }
 
+let context = CoreDataStack.coreData.persistentContainer.viewContext
