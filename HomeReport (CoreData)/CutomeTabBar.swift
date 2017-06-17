@@ -17,11 +17,11 @@ class CustomeTabBar: UITabBarController {
         
         let homeController = HomeListViewController()
         let homeNav = UINavigationController(rootViewController: homeController)
-            homeController.title = "Home"
+            homeController.title = "Home Report"
         
         let saleController = SaleHistoryViewController()
         let saleNav = UINavigationController(rootViewController: saleController)
-            saleController.title = "History"
+            saleController.title = "Sales History"
         
         viewControllers = [homeNav, saleNav]
     }

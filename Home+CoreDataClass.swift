@@ -12,18 +12,24 @@ import CoreData
 @objc(Home)
 public class Home: NSManagedObject {
     
-    class func getHomeByStatus(isForSale:Bool, mob: NSManagedObjectContext) -> [Home] {
+    typealias HomeByStatusHandler = (_ homes: [Home]) -> Void
+    
+    class func getHomeByStatus(isForSale:Bool, mob: NSManagedObjectContext, completionHandle: @escaping HomeByStatusHandler) {
         
         let request:NSFetchRequest<Home> = Home.fetchRequest()
         request.predicate = NSPredicate(format: "isForSale = %@", isForSale as CVarArg)
         
+        let asyncRequest = NSAsynchronousFetchRequest(fetchRequest: request) { (results: NSAsynchronousFetchResult<Home>) in
+            
+            if let homes = results.finalResult {
+                
+                completionHandle(homes)
+            }
+        }
+        
         do {
             
-            let homes = try mob.fetch(request)
-            
-            print(homes.count)
-            
-            return homes
+            try mob.execute(asyncRequest)
             
         } catch {
             fatalError("Error in getting list of homes")

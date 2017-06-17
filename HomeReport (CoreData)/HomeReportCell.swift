@@ -51,8 +51,8 @@ class HomeReportCell: UITableViewCell {
     
     let featuresLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
+            label.font = UIFont.boldSystemFont(ofSize: 12)
+            label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     

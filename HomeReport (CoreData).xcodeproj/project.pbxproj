@@ -15,6 +15,8 @@
 		0B583D1D1EEBBB120004EDFE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B583D1C1EEBBB120004EDFE /* CoreDataStack.swift */; };
 		0B7621571EF49F3A004F94C8 /* CutomeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7621561EF49F3A004F94C8 /* CutomeTabBar.swift */; };
 		0B7621591EF49F8E004F94C8 /* SaleHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7621581EF49F8E004F94C8 /* SaleHistoryViewController.swift */; };
+		0B9AE5ED1EF5C13900D7E158 /* SaleHistory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AE5EB1EF5C13900D7E158 /* SaleHistory+CoreDataClass.swift */; };
+		0B9AE5F01EF5C48400D7E158 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AE5EF1EF5C48400D7E158 /* Date+Extension.swift */; };
 		0BA679351EEBBCE800443910 /* homes.json in Resources */ = {isa = PBXBuildFile; fileRef = 0BA679341EEBBCE700443910 /* homes.json */; };
 		0BE72E481EF5AE7D00703755 /* Home+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE72E461EF5AE7D00703755 /* Home+CoreDataClass.swift */; };
 		0BE72E4B1EF5AFED00703755 /* HomeReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE72E4A1EF5AFED00703755 /* HomeReportCell.swift */; };
@@ -28,9 +30,11 @@
 		0B583D111EEBBA4B0004EDFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B583D141EEBBA4B0004EDFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B583D161EEBBA4B0004EDFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0B583D1C1EEBBB120004EDFE /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		0B583D1C1EEBBB120004EDFE /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = "HomeReport (CoreData)/CoreDataStack.swift"; sourceTree = "<group>"; };
 		0B7621561EF49F3A004F94C8 /* CutomeTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutomeTabBar.swift; sourceTree = "<group>"; };
 		0B7621581EF49F8E004F94C8 /* SaleHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleHistoryViewController.swift; sourceTree = "<group>"; };
+		0B9AE5EB1EF5C13900D7E158 /* SaleHistory+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SaleHistory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0B9AE5EF1EF5C48400D7E158 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+Extension.swift"; path = "HomeReport (CoreData)/Date+Extension.swift"; sourceTree = "<group>"; };
 		0BA679341EEBBCE700443910 /* homes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = homes.json; sourceTree = "<group>"; };
 		0BE72E461EF5AE7D00703755 /* Home+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Home+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0BE72E4A1EF5AFED00703755 /* HomeReportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeReportCell.swift; sourceTree = "<group>"; };
@@ -50,7 +54,10 @@
 		0B583CFB1EEBBA4B0004EDFE = {
 			isa = PBXGroup;
 			children = (
+				0B9AE5EB1EF5C13900D7E158 /* SaleHistory+CoreDataClass.swift */,
 				0BE72E461EF5AE7D00703755 /* Home+CoreDataClass.swift */,
+				0B583D1C1EEBBB120004EDFE /* CoreDataStack.swift */,
+				0B9AE5EF1EF5C48400D7E158 /* Date+Extension.swift */,
 				0B583D061EEBBA4B0004EDFE /* HomeReport (CoreData) */,
 				0B583D051EEBBA4B0004EDFE /* Products */,
 			);
@@ -71,7 +78,6 @@
 				0B583D091EEBBA4B0004EDFE /* HomeListViewController.swift */,
 				0BE72E4A1EF5AFED00703755 /* HomeReportCell.swift */,
 				0B7621581EF49F8E004F94C8 /* SaleHistoryViewController.swift */,
-				0B583D1C1EEBBB120004EDFE /* CoreDataStack.swift */,
 				0B7621561EF49F3A004F94C8 /* CutomeTabBar.swift */,
 				0BA679341EEBBCE700443910 /* homes.json */,
 				0B583D111EEBBA4B0004EDFE /* Assets.xcassets */,
@@ -156,9 +162,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B583D0A1EEBBA4B0004EDFE /* HomeListViewController.swift in Sources */,
+				0B9AE5ED1EF5C13900D7E158 /* SaleHistory+CoreDataClass.swift in Sources */,
 				0B583D081EEBBA4B0004EDFE /* AppDelegate.swift in Sources */,
 				0B583D101EEBBA4B0004EDFE /* HomeReport__CoreData_.xcdatamodeld in Sources */,
 				0B7621591EF49F8E004F94C8 /* SaleHistoryViewController.swift in Sources */,
+				0B9AE5F01EF5C48400D7E158 /* Date+Extension.swift in Sources */,
 				0BE72E4B1EF5AFED00703755 /* HomeReportCell.swift in Sources */,
 				0B7621571EF49F3A004F94C8 /* CutomeTabBar.swift in Sources */,
 				0B583D1D1EEBBB120004EDFE /* CoreDataStack.swift in Sources */,

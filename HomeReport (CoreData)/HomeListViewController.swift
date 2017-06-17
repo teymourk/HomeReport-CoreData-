@@ -11,7 +11,13 @@ import CoreData
 
 class HomeListViewController: UITableViewController {
 
-    lazy var homes = [Home]()
+    var homes:[Home]? {
+        didSet {
+            
+            tableView.reloadData()
+        }
+    }
+    
     var isForSale:Bool = true
     
     override func viewDidLoad() {
@@ -19,27 +25,25 @@ class HomeListViewController: UITableViewController {
 
         view.backgroundColor = .white
         
-        self.title = "Home Report"
-        
         tableView.register(HomeReportCell.self, forCellReuseIdentifier: "Cell")
         
         let filter = UIBarButtonItem(title: "Filter", style: .done, target: self, action: #selector(onFilter))
         let options = UIBarButtonItem(title: "For Sale", style: .plain, target: self, action: #selector(onOptions))
-        navigationItem.leftBarButtonItems = [filter, options]
+        navigationItem.rightBarButtonItems = [filter, options]
         
         loadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return homes.count
+        return homes?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? HomeReportCell {
             
-            let currentHome = homes[indexPath.item]
+            let currentHome = homes?[indexPath.item]
                 cell.currentHome = currentHome
             
             return cell
@@ -53,21 +57,40 @@ class HomeListViewController: UITableViewController {
         return 70
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let currentHome = homes?[indexPath.item]
+        
+        let layout = UICollectionViewFlowLayout()
+
+        let saleHistoryVC = SaleHistoryViewController(collectionViewLayout: layout)
+            saleHistoryVC.home = currentHome 
+        
+        navigationController?.pushViewController(saleHistoryVC, animated: true)
+    }
+    
     private func loadData() {
         
-        homes = Home.getHomeByStatus(isForSale: isForSale, mob: context)
-        tableView.reloadData()
+        Home.getHomeByStatus(isForSale: isForSale, mob: context) { (homes) in
+            
+            self.homes = homes
+        }
     }
     
     @objc
     private func onFilter(sender: UIBarButtonItem) {
         
-        print("SAALAM")
+        
     }
     
     @objc
     private func onOptions(sender: UIBarButtonItem) {
         
-        print("HELLO")
+        let senderTitle = sender.title
+        
+        sender.title = senderTitle?.caseInsensitiveCompare("For Sale") == .orderedSame ? "Sold" : "For Sale"
+        isForSale = senderTitle?.caseInsensitiveCompare("For Sale") == .orderedSame ? true : false
+        
+        loadData()
     }
 }
